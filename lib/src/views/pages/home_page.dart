@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import './bottom_nav_bar.dart';
+import './tracker.dart';
+import './inventory.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -31,11 +35,27 @@ class HomePage extends StatelessWidget {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
+            Tracker(),
+            Inventory(),
           ],
         ),
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
+      ),
+
+      bottomNavigationBar: ConvexAppBar(
+        items: [
+          TabItem(icon: Icons.timer, title: 'Schedule'),
+          TabItem(icon: Icons.inventory_rounded, title: 'Inventory'),
+          TabItem(icon: Icons.file_copy_outlined, title: 'Documents'),
+          TabItem(icon: Icons.healing_sharp, title: 'SoS'),
+        ],
+        initialActiveIndex: 2, //optional, default as 0
+        onTap: (int i) => print('click index=$i'),
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );

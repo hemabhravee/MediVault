@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import './src/views/pages/home_page.dart';
 import './src/views/pages/inventory.dart';
 import './src/views/pages/tracker.dart';
+import './src/views/pages/documents.dart';
+import './src/views/pages/sos.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: MyMainPage(),
       routes: {
         '/home': (context) => HomePage(),
         '/inventory': (context) => Inventory(),
@@ -39,8 +42,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class MyMainPage extends StatefulWidget {
+  MyMainPage({Key key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -54,21 +57,34 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyMainPageState createState() => _MyMainPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _MyMainPageState extends State<MyMainPage> {
+  final List<Widget> _pages = [Tracker(), Inventory(), Documents(), Sos()];
+  PageController pageController;
+  GlobalKey<ConvexAppBarState> _appBarKey = GlobalKey<ConvexAppBarState>();
 
-  void _incrementCounter() {
+  int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  _onTapped(int index) {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      _selectedIndex = index;
     });
+    pageController.jumpToPage(index);
+    _appBarKey.currentState.animateTo(index);
   }
 
   @override
@@ -81,45 +97,32 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text("MediVault"),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+      body: PageView(
+        children: _pages,
+        controller: pageController,
+        onPageChanged: _onTapped,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: _selectedIndex == 1
+          ? FloatingActionButton(
+              onPressed: () {},
+              tooltip: 'Increment',
+              child: Icon(Icons.add),
+            )
+          : null, // This trailing comma makes auto-formatting nicer for build methods.
+      bottomNavigationBar: ConvexAppBar(
+        key: _appBarKey,
+        items: [
+          TabItem(icon: Icons.timer, title: 'Tracker'),
+          TabItem(icon: Icons.inventory_rounded, title: 'Inventory'),
+          TabItem(icon: Icons.file_copy_outlined, title: 'Documents'),
+          TabItem(icon: Icons.healing_sharp, title: 'SoS'),
+        ], //optional, default as 0
+        onTap: _onTapped,
+        backgroundColor: Theme.of(context).primaryColor,
+        initialActiveIndex: _selectedIndex,
+      ),
     );
   }
 }
