@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/sliver_app_bar.dart';
 
 class Tracker extends StatefulWidget {
   const Tracker({Key key}) : super(key: key);
@@ -22,17 +23,15 @@ class _TrackerState extends State<Tracker> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Column(
-      children: [
-        Container(
-          child: Text(num.toString()),
-        ),
-        FloatingActionButton(
-            onPressed: () {
-              _test();
-            },
-            child: Icon(Icons.add))
-      ],
-    );
+    return CustomScrollView(slivers: <Widget>[
+      getSliverAppBar(
+          context: context,
+          title: "Tracker",
+          expandedHeight: 0,
+          primaryPage: true),
+      SliverToBoxAdapter(
+          child: SizedBox(
+              child: Center(child: Container(child: Text("Something"))))),
+    ]);
   }
 }

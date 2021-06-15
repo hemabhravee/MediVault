@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "714408240312",
+    "project_id": "medivault-e92c4",
+    "storage_bucket": "medivault-e92c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:714408240312:android:231fb831036b947c8cc04d",
+        "android_client_info": {
+          "package_name": "com.example.medivault_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "714408240312-bhmnalg0bmqhleleig48q0bga6irral4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medivault_app",
+            "certificate_hash": "9453fcecb06edd539f6b586fe8abb54eb7930815"
+          }
+        },
+        {
+          "client_id": "714408240312-rjpvbu6if7di18v2mctk65putelrt7j9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlStOSbCpOOsZCUb_h3OOM9TTz2NILWcU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "714408240312-rjpvbu6if7di18v2mctk65putelrt7j9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

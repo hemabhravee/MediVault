@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import '../widgets/sliver_app_bar.dart';
 
 class Sos extends StatelessWidget {
   const Sos({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("Sos"),
-    );
+    return CustomScrollView(slivers: <Widget>[
+      getSliverAppBar(
+          context: context, title: "SOS", expandedHeight: 0, primaryPage: true),
+      SliverToBoxAdapter(
+          child: SizedBox(
+              child: Center(child: Container(child: Text("Something"))))),
+    ]);
   }
 }
