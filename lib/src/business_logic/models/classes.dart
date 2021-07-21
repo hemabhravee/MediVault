@@ -26,7 +26,7 @@ class Medicine {
 class Customer {
   List<Medicine> medicines;
   String name;
-  Set<String> uniqueTimings = <String> {};
+  Set<String> uniqueTimings = <String>{};
 
   Customer({List<Medicine> medicines, name}) {
     this.name = name;

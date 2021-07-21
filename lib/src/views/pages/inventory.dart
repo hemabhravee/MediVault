@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:medivault_app/src/business_logic/models/classes.dart';
 import '../../business_logic/models/data.dart';
 import '../widgets/inventory_card.dart';
 import '../widgets/sliver_app_bar.dart';
 
 class Inventory extends StatefulWidget {
-  final Customer customer;
-  Inventory({Key key, this.customer}) : super(key: key);
+  Inventory({Key key}) : super(key: key);
 
   @override
   _InventoryState createState() => _InventoryState();
@@ -14,11 +14,12 @@ class Inventory extends StatefulWidget {
 
 class _InventoryState extends State<Inventory> {
   Customer cus;
+  
 
   int count = 0;
   @override
   void initState() {
-    cus = widget.customer;
+    cus = Get.find();
     super.initState();
   }
 
@@ -45,9 +46,8 @@ class _InventoryState extends State<Inventory> {
         SliverList(
             delegate:
                 SliverChildBuilderDelegate((BuildContext context, int index) {
-          return InventoryCard(
-              medicine: widget.customer.medicines[index], index: index);
-        }, childCount: widget.customer.medicines.length)),
+          return InventoryCard(medicine: cus.medicines[index], index: index);
+        }, childCount: cus.medicines.length)),
       ],
     );
   }
