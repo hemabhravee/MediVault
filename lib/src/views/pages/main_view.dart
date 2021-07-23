@@ -53,7 +53,7 @@ class _MyMainViewState extends State<MyMainView> {
       _selectedIndex = index;
     });
     pageController.jumpToPage(index);
-    _appBarKey.currentState.animateTo(index);
+    //_appBarKey.currentState.animateTo(index);
   }
 
   @override
@@ -62,11 +62,15 @@ class _MyMainViewState extends State<MyMainView> {
       // appBar: AppBar(
       //   title: Text(appbartitle[_selectedIndex]),
       // ),
-      body: PageView(
-        children: _pages,
-        controller: pageController,
-        onPageChanged: _onTapped,
+      body: PageStorage(
+        child: _pages[_selectedIndex],
+        bucket: bucket,
       ),
+      // PageView(
+      //   children: _pages,
+      //   controller: pageController,
+      //   onPageChanged: _onTapped,
+      // ),
       floatingActionButton: _selectedIndex == 1
           ? FloatingActionButton(
               onPressed: () {},
