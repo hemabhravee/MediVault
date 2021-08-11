@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:medivault_app/src/business_logic/models/classes.dart';
+import 'package:medivault_app/src/common_module/models/classes.dart';
 import '../utils/custom_rect_tween.dart';
-import '../widgets/sliver_app_bar.dart';
+import 'package:medivault_app/src/common_module/widgets/sliver_app_bar.dart';
 
 // This widget also serves as the form widget
 class InventoryPopUpCard extends StatefulWidget {

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:medivault_app/src/business_logic/models/data.dart';
-import 'package:medivault_app/src/views/pages/main_view.dart';
-import './src/views/pages/inventory.dart';
-import './src/views/pages/tracker.dart';
-import './src/views/pages/documents.dart';
-import './src/views/pages/sos.dart';
+import 'package:medivault_app/src/common_module/models/data.dart';
+import 'package:medivault_app/src/main_view.dart';
+import 'package:medivault_app/src/tracker_module/views/inventory.dart';
+import 'package:medivault_app/src/records_module/views/documents.dart';
+import 'package:medivault_app/src/sos_module/views/sos.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import './src/business_logic/models/classes.dart';
+import 'package:medivault_app/src/common_module/models/classes.dart';
+import 'package:medivault_app/src/shop_module/views/shop_main_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => MyMainView()),
         GetPage(name: '/inventory', page: () => Inventory()),
-        GetPage(name: '/tracker', page: () => Tracker()),
+        GetPage(name: '/shop', page: () => ShopMainView()),
         GetPage(name: '/documents', page: () => Documents()),
         GetPage(name: '/sos', page: () => Sos()),
       ],

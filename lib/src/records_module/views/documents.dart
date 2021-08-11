@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/sliver_app_bar.dart';
+import 'package:medivault_app/src/common_module/widgets/sliver_app_bar.dart';
 
 class Documents extends StatelessWidget {
   const Documents({Key key}) : super(key: key);

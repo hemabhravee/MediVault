@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medivault_app/src/business_logic/models/classes.dart';
+import 'package:medivault_app/src/common_module/models/classes.dart';
 import 'package:medivault_app/src/views/utils/custom_splash_factory.dart';
 import './inventory_pop_up_card.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';

@@ -1,4 +1,4 @@
-import 'package:medivault_app/src/business_logic/models/classes.dart';
+import 'package:medivault_app/src/common_module/models/classes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medivault_app/src/business_logic/models/classes.dart';
+import 'package:medivault_app/src/common_module/models/classes.dart';
 import '../utils/hero_dialog_route.dart';
 import '../utils/custom_rect_tween.dart';
 
